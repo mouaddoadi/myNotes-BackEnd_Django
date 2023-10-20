@@ -44,13 +44,12 @@ def getRoutes(request):
 
 @api_view(['GET'])
 def getNotes(request):
-    print("  mni")
     notes = Note.objects.all()
     serializer = NoteSerializer(notes, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
 def getNote(request, pk):
-    notes = Note.objects.get(id=pk)
-    serializer = NoteSerializer(notes, many=False)
+    note = Note.objects.get(id=pk)
+    serializer = NoteSerializer(note, many=False)
     return Response(serializer.data)
